@@ -1,0 +1,29 @@
+{
+  "name": "sa-sdk-javascript",
+  "version": "1.7.14",
+  "description": "Sensors Analytics JavaScript SDK",
+  "main": "sensorsdata.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sensorsdata/sa-sdk-javascript.git"
+  },
+  "author": "sensorsdata",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/sensorsdata/sa-sdk-javascript/issues"
+  },
+  "homepage": "https://github.com/sensorsdata/sa-sdk-javascript#readme",
+  "dependencies": {
+    "dot": "^1.0.3",
+    "jquery": "^1.11.3"
+  },
+  "files": [
+    "sensorsdata.min.js",
+    "vendor.min.css",
+    "vendor.min.js",
+    "vtrack.min.js"
+  ]
+}
