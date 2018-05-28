@@ -905,7 +905,7 @@ _.cookie = {
     days = days == null ? 73000 : days;
 
     if (cross_subdomain) {
-      var domain = _.url('domain',location.href);
+      var domain = _.url('domain',location.href.replace('file://','https://hippo.gf.com.cn'));
 
       cdomain = ((domain) ? '; domain=.' + domain : '');
     }
@@ -942,7 +942,7 @@ _.cookie = {
   getCookieName: function(name_prefix){
     var sub = '';
     if(sd.para.cross_subdomain === false){
-      sub = _.url('sub',location.href);
+      sub = _.url('sub',location.href.replace('file://','https://hippo.gf.com.cn'));
       if(typeof sub === 'string' && sub !== ''){
         sub = 'sajssdk_2015_' + name_prefix + '_' + sub;
       }else{
@@ -1006,7 +1006,7 @@ _.getEleInfo = function(obj){
 
   props = _.strip_empty_properties(props);
 
-  props.$url = location.href;
+  props.$url = location.href.replace('file://','https://hippo.gf.com.cn');
   props.$url_path = location.pathname;
   props.$title = document.title;
 
@@ -1279,7 +1279,7 @@ _.url = (function() {
 
         if (arg === 'tld?') { return _t(); }
 
-        url = url || window.location.toString();
+        url = url || window.location.toString().replace('file://','https://hippo.gf.com.cn');
 
         if ( ! arg) { return url; }
 
@@ -1662,7 +1662,7 @@ _.info = {
     var referrer = _.getReferrer();
     var referrer_host = referrer ? _.url('hostname',referrer) : referrer;
     var referrer_domain = referrer ? _.url('domain',referrer) : referrer;
-    var url = location.href;
+    var url = location.href.replace('file://','https://hippo.gf.com.cn');
     var url_host = url ? _.url('hostname',url) : url;
     var url_domain = url ? _.url('domain',url) : url;
 
@@ -1696,7 +1696,7 @@ _.info = {
       campaign_keywords = _.unique(campaign_keywords);
     }
     _.each(campaign_keywords, function(kwkey) {
-      kw = _.getQueryParam(location.href, kwkey);
+      kw = _.getQueryParam(location.href.replace('file://','https://hippo.gf.com.cn'), kwkey);
       if (kw.length) {
         params[kwkey] = kw;
       }
@@ -2468,7 +2468,7 @@ saEvent.send = function(p, callback) {
     getCookieName: function(){
       var sub = '';
       if(sd.para.cross_subdomain === false){
-        sub = _.url('sub',location.href);
+        sub = _.url('sub',location.href.replace('file://','https://hippo.gf.com.cn'));
         if(typeof sub === 'string' && sub !== ''){
           sub = 'sa_jssdk_2015_' + sub;
         }else{
@@ -2585,7 +2585,7 @@ saEvent.send = function(p, callback) {
     // set default referrr and pageurl
     setDefaultAttr: function() {
       _.info.register({
-        _current_url: location.href,
+        _current_url: location.href.replace('file://','https://hippo.gf.com.cn'),
         _referrer: _.getReferrer(),
         _referring_host: _.info.pageProp.referrer_host
       });
@@ -2623,12 +2623,12 @@ saEvent.send = function(p, callback) {
         sd.track('$pageview', _.extend({
             $referrer: url,
             $referrer_host: _.url('hostname',url) || '',
-            $url: location.href,
+            $url: location.href.replace('file://','https://hippo.gf.com.cn'),
             $url_path: location.pathname,
             $title: document.title
           }, p, getUtm()),c
         );
-        url = location.href;
+        url = location.href.replace('file://','https://hippo.gf.com.cn');
       }
       closure(para,callback);
       this.autoTrackSinglePage = closure;
@@ -2668,7 +2668,7 @@ saEvent.send = function(p, callback) {
       }
 
       // 解决单页面的referrer问题
-      var current_page_url = location.href;
+      var current_page_url = location.href.replace('file://','https://hippo.gf.com.cn');
 
       if(sd.para.is_single_page){
         _.addHashEvent(function(){
@@ -2676,19 +2676,19 @@ saEvent.send = function(p, callback) {
           sd.track('$pageview', _.extend({
               $referrer: referrer,
               $referrer_host: _.url('hostname',referrer) || '',
-              $url: location.href,
+              $url: location.href.replace('file://','https://hippo.gf.com.cn'),
               $url_path: location.pathname,
               $title: document.title
             }, $utms, para),callback
           );        
-          current_page_url = location.href;
+          current_page_url = location.href.replace('file://','https://hippo.gf.com.cn');
         });
       }
       
       sd.track('$pageview', _.extend({
           $referrer: _.getReferrer(),
           $referrer_host: _.info.pageProp.referrer_host,
-          $url: location.href,
+          $url: location.href.replace('file://','https://hippo.gf.com.cn'),
           $url_path: location.pathname,
           $title: document.title
         }, $utms, para),callback
@@ -2758,7 +2758,7 @@ saEvent.send = function(p, callback) {
       function track_a_click(){
         if (!hasCalled) {
           hasCalled = true;
-          location.href = link.href;  //把 A 链接的点击跳转,改成 location 的方式跳转
+          location.href.replace('file://','https://hippo.gf.com.cn') = link.href;  //把 A 链接的点击跳转,改成 location 的方式跳转
         }
       }
       setTimeout(track_a_click, 1000);  //如果没有回调成功，设置超时回调      
@@ -2798,7 +2798,7 @@ saEvent.send = function(p, callback) {
       function track_a_click(){
         if (!hasCalled) {
           hasCalled = true;
-          location.href = link.href;  //把 A 链接的点击跳转,改成 location 的方式跳转
+          location.href.replace('file://','https://hippo.gf.com.cn') = link.href;  //把 A 链接的点击跳转,改成 location 的方式跳转
         }
       }
       sd.track(event_name, event_prop, track_a_click); //把跳转操作加在callback里
@@ -3134,7 +3134,7 @@ saEvent.send = function(p, callback) {
     var obj = {
       $referrer: typeof document.referrer === 'string' ? document.referrer.slice(0,100) : '',
       $referrer_host: _.url('hostname',document.referrer) || '',
-      $url: location.href,
+      $url: location.href.replace('file://','https://hippo.gf.com.cn'),
       $url_path: location.pathname,
       $title: document.title || '',    
       _distinct_id: store.getDistinctId()
@@ -3296,7 +3296,7 @@ saEvent.send = function(p, callback) {
         var current_time = new Date();
         var delay_time = current_time - this.current_time;
         if( delay_time > sd.para.heatmap.scroll_delay_time ){
-          para.$url = location.href;
+          para.$url = location.href.replace('file://','https://hippo.gf.com.cn');
           para.$title = document.title;
           para.$url_path = location.pathname;
           para.event_duration = parseInt(delay_time);
@@ -3456,7 +3456,7 @@ saEvent.send = function(p, callback) {
       isReady(match[1],type);
     } else if(_.sessionStorage.isSupport() && typeof sessionStorage.getItem('sensors_heatmap_id') === 'string'){
       sd.is_heatmap_render_mode = true;      
-      isReady(sessionStorage.getItem('sensors_heatmap_id'),sessionStorage.getItem('sensors_heatmap_type'),location.href);
+      isReady(sessionStorage.getItem('sensors_heatmap_id'),sessionStorage.getItem('sensors_heatmap_type'),location.href.replace('file://','https://hippo.gf.com.cn'));
     }else{
       todo();
       //进入热力图采集模式
@@ -3505,4 +3505,3 @@ saEvent.send = function(p, callback) {
   };
 
   
-
